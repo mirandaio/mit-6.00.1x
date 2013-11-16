@@ -154,9 +154,11 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    result = hand.copy()
+    for c in word:
+        result[c] -= 1
 
-
+    return result
 
 #
 # Problem #3: Test word validity
