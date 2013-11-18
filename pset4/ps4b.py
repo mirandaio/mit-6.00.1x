@@ -138,16 +138,44 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this when you code this function
 
-        
+    hand = None
+    i = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+    print
+
+    while i != "e":
+        if i == "n":
+            hand = dealHand(HAND_SIZE)
+        elif i == "r":
+            if hand == None:
+                print "You have not played a hand yet. Please play a new hand first!"
+                i = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+                print
+                continue
+        else:
+            print "Invalid command.\n"
+            i = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+            print
+            continue
+
+        player = raw_input("Enter u to have yourself play, c to have the computer play: ")
+
+        while player != "u" and player != "c":
+            print "Invalid command.\n"
+            player = raw_input("Enter u to have yourself play, c to have the computer play: ")
+
+        if player == "u":
+            playHand(hand, wordList, HAND_SIZE)
+        else:
+            compPlayHand(hand, wordList, HAND_SIZE)
+            
+
+        i = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        print
+
 #
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
-    # wordList = loadWords()
-    # playGame(wordList)
-
     wordList = loadWords()
-    compPlayHand({'a': 2, 'e': 2, 'i': 2, 'm': 2, 'n': 2, 't': 2}, wordList, 12)
+    playGame(wordList)
