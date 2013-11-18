@@ -80,8 +80,36 @@ def compPlayHand(hand, wordList, n):
     wordList: list (string)
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    # Keep track of the total score
+    score = 0
     
+    # As long as there are still letters left in the hand:
+    while calculateHandlen(hand) > 0:
+    
+        # Display the hand
+        print "Current Hand: ",
+        displayHand(hand)
+
+        # The computer chooses a word
+        word = compChooseWord(hand, wordList, n)
+        
+        # The hand finishes when compChooseWord returns None
+        if word == None:
+            # End the game (break out of the loop)
+            break
+        else:
+            word_score = getWordScore(word, n)
+            score += word_score
+            
+            # Display word, score for that word, and the total score
+            print '"' + word + '" earned', word_score, "points. Total:", score, "points.\n"
+                
+            # Update the hand 
+            hand = updateHand(hand, word)
+                
+    # The computer has exhausted its possible choices
+    print "Total score:", score, "points."
+
 #
 # Problem #8: Playing a game
 #
@@ -118,7 +146,8 @@ def playGame(wordList):
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
+    # wordList = loadWords()
+    # playGame(wordList)
+
     wordList = loadWords()
-    playGame(wordList)
-
-
+    compPlayHand({'a': 2, 'e': 2, 'i': 2, 'm': 2, 'n': 2, 't': 2}, wordList, 12)
