@@ -13,7 +13,9 @@ CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 HAND_SIZE = 7
 
 SCRABBLE_LETTER_VALUES = {
-    'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
+    'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2, 'h': 4, 'i': 1, 
+    'j': 8, 'k': 5, 'l': 1, 'm': 3, 'n': 1, 'o': 1, 'p': 3, 'q': 10, 'r': 1, 
+    's': 1, 't': 1, 'u': 1, 'v': 4, 'w': 4, 'x': 8, 'y': 4, 'z': 10
 }
 
 # -----------------------------------
@@ -53,7 +55,7 @@ def getFrequencyDict(sequence):
     for x in sequence:
         freq[x] = freq.get(x,0) + 1
     return freq
-	
+
 
 # (end of helper code)
 # -----------------------------------
@@ -108,7 +110,8 @@ def displayHand(hand):
     print                               # print an empty line
 
 #
-# Problem #2: Make sure you understand how this function works and what it does!
+# Problem #2: Make sure you understand how this function works and what it 
+# does!
 #
 def dealHand(n):
     """
@@ -232,7 +235,8 @@ def playHand(hand, wordList, n):
         displayHand(hand)
 
         # Ask user for input
-        word = raw_input('Enter word, or a "." to indicate that you are finished: ')
+        word = raw_input('Enter word, or a "." to indicate that you are ' +
+            'finished: ')
         
         # If the input is a single period:
         if word == ".":
@@ -245,21 +249,24 @@ def playHand(hand, wordList, n):
             # If the word is not valid:
             if not isValidWord(word, hand, wordList):
             
-                # Reject invalid word (print a message followed by a blank line)
+                # Reject invalid word (print a message followed by blank line)
                 print "Invalid word, please try again.\n"
 
             # Otherwise (the word is valid):
             else:
                 word_score = getWordScore(word, n)
                 score += word_score
-                # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
-                print '"' + word + '" earned', word_score, "points. Total:", score, "points.\n"
+                # Tell the user how many points the word earned, and the 
+                # updated total score, in one line followed by a blank line
+                print '"' + word + '" earned', word_score, "points. Total:", \
+                    score, "points.\n"
                 
                 # Update the hand 
                 hand = updateHand(hand, word)
                 
 
-    # Game is over (user entered a '.' or ran out of letters), so tell user the total score
+    # Game is over (user entered a '.' or ran out of letters), so tell user 
+    # the total score
     if word == ".":
         print "Goodbye! Total score:", score, "points.\n"
     else:
@@ -283,7 +290,8 @@ def playGame(wordList):
     2) When done playing the hand, repeat from step 1    
     """
     hand = None
-    i = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+    i = raw_input("Enter n to deal a new hand, r to replay the last hand, " + 
+        "or e to end game: ")
 
     while i != "e":
         if i == "n":
@@ -291,13 +299,15 @@ def playGame(wordList):
             playHand(hand, wordList, HAND_SIZE)
         elif i == "r":
             if hand == None:
-                print "You have not played a hand yet. Please play a new hand first!\n"
+                print("You have not played a hand yet. Please play a new " + 
+                    "hand first!\n")
             else:
                 playHand(hand, wordList, HAND_SIZE)
         else:
             print "Invalid command."
             
-        i = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        i = raw_input("Enter n to deal a new hand, r to replay the last " + 
+            "hand, or e to end game: ")
 
 
 #
