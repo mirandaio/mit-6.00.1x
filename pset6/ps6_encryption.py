@@ -118,8 +118,15 @@ def applyCoder(text, coder):
     coder: dict with mappings of characters to shifted characters
     returns: text after mapping coder chars to original text
     """
-    ### TODO.
-    return "Not yet implemented." # Remove this comment when you code the function
+    result = ''
+
+    for c in text:
+        if c in string.punctuation or c == ' ' or c.isdigit():
+            result += c
+        else:
+            result += coder[c]
+
+    return result
 
 def applyShift(text, shift):
     """
