@@ -15,7 +15,7 @@ def reverseString(aStr):
     aStr: a string
     returns: a reversed string
     """
-    if(len(aStr) <= 1):
+    if len(aStr) <= 1:
         return aStr
 
     return reverseString(aStr[1:]) + aStr[0]
@@ -39,7 +39,16 @@ def x_ian(x, word):
     word: a string
     returns: True if word is x_ian, False otherwise
     """
-    ###TODO.
+    if len(x) == 0:
+        return True
+
+    if len(word) == 0:
+        return False
+
+    if x[0] == word[0]:
+        return x_ian(x[1:], word[1:])
+
+    return x_ian(x, word[1:])
 
 #
 # Problem 5: Typewriter
