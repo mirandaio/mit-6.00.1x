@@ -15,7 +15,10 @@ def reverseString(aStr):
     aStr: a string
     returns: a reversed string
     """
-    ### TODO.
+    if(len(aStr) <= 1):
+        return aStr
+
+    return reverseString(aStr[1:]) + aStr[0]
 
 #
 # Problem 4: X-ian
