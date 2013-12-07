@@ -64,4 +64,11 @@ def insertNewlines(text, lineLength):
         the next word.
     returns: a string, with newline characters inserted appropriately. 
     """
-    ### TODO.
+    l = lineLength
+    while l < len(text) and text[l] != ' ':
+        l += 1
+
+    if len(text) <= lineLength:
+        return text
+
+    return text[:l] + '\n' + insertNewlines(text[l+1:], lineLength)
