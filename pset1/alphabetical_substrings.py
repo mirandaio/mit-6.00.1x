@@ -1,17 +1,14 @@
 s = "azcbobobegghakl"
-max_start = 0
-max_end = 0
-
 start = 0
-while start < len(s):
-    end = start + 1
-    while end < len(s) and s[end-1] <= s[end]:
-        end += 1
+end = 0
+temp_start = 0
 
-    if max_end - max_start < end - start:
-        max_end = end
-        max_start = start
-
-    start = end
-
-print "Longest substring in alphabetical order is:", s[max_start:max_end]
+for i in range(1, len(s)):
+    if s[i-1] > s[i]:
+        temp_start = i
+        
+    if i - temp_start > end - start:
+        start = temp_start
+        end = i
+                                            
+print 'Longest substring in alphabetical order is:', s[start:end+1]
